@@ -1,0 +1,38 @@
+{
+    "name": "hakrichtech/phpshots",
+    "description": "Boilerplate for the hkmcode PHP framework",
+    "version": "0.1",
+    "autoload": {
+        "psr-4": {
+            "Hakrichtech\\Phpshots\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hakeem",
+            "email": "hakimushamavu@gmail.com"
+        }
+    ],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.1"
+    },
+    "repositories": [],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.0-dev" 
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "post-autoload-dump": [
+            "Hakrichtech\\Phpshots\\ComposerScripts::postAutoloadDump"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

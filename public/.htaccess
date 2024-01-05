@@ -1,0 +1,86 @@
+# Disable directory browsing
+Options -Indexes
+
+# Set the default index file
+DirectoryIndex index.php
+
+# ----------------------------------------------------------------------
+# Rewrite engine
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect Trailing Slashes...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Rewrite "www.example.com" to "example.com"
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+
+    # Rewrite /admin/ URLs to admin.php
+    RewriteRule ^admin/(.*)$ admin.php/$1 [L]
+
+    # Rewrite everything else to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|css)$ [NC]
+
+    # Explicitly disable MultiViews
+    Options -MultiViews
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+# Disable server signature
+ServerSignature Off
+
+
+
+
+
+
+
+
+
+
+# # Disable directory browsing
+# Options -Indexes
+
+# # ----------------------------------------------------------------------
+# # Rewrite engine
+# # ----------------------------------------------------------------------
+
+# # Turning on the rewrite engine is necessary for the following rules and features.
+# # FollowSymLinks must be enabled for this to work.
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+
+#     # Redirect Trailing Slashes...
+#     RewriteCond %{REQUEST_FILENAME} !-d
+#     RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+#     # Rewrite "www.example.com" to "example.com"
+#     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#     RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+
+#     # Checks to see if the user is attempting to access a valid file,
+#     # such as an image or css document, if this isn't true it sends the
+#     # request to the front controller, index.php,theme.php,admin.php,install.php
+
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteCond %{REQUEST_FILENAME} !-d
+
+#     # Redirect URLs starting with /theme/ to theme.php
+#     # RewriteRule ^theme/(.*)$ theme.php/$1 [L]
+
+#     # Redirect URLs starting with /theme/ to theme.php
+#     # RewriteRule ^admin/(.*)$ admin.php/$1 [L]
+
+#     # Redirect everything else to index.php
+#     RewriteRule ^(.*)$ index.php/$1 [L]
+# </IfModule>
+
+# # Disable server signature
+# ServerSignature Off
